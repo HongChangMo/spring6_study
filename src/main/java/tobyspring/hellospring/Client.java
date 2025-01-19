@@ -2,20 +2,23 @@ package tobyspring.hellospring;
 
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import tobyspring.hellospring.payment.Payment;
+import tobyspring.hellospring.payment.PaymentService;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.concurrent.TimeUnit;
 
 public class Client {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         BeanFactory beanFactory = new AnnotationConfigApplicationContext(ObjectFactory.class);
         PaymentService paymentService = beanFactory.getBean(PaymentService.class);
 
-        OrderService orderService = beanFactory.getBean(OrderService.class);
+        /*OrderService orderService = beanFactory.getBean(OrderService.class);
 
-        System.out.println(paymentService.exRateProvider == orderService.exRateProvider);
+        System.out.println(paymentService.exRateProvider == orderService.exRateProvider);*/
 
         Payment payment = paymentService.prepare(100L, "USD", BigDecimal.valueOf(50.7));
-        System.out.println(payment);
+        System.out.println("Payment : " + payment);
     }
 }

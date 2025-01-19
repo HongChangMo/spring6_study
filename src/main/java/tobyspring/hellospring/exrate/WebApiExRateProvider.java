@@ -1,7 +1,7 @@
-package tobyspring.hellospring;
+package tobyspring.hellospring.exrate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.stereotype.Component;
+import tobyspring.hellospring.payment.ExRateProvider;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,6 +24,9 @@ public class WebApiExRateProvider implements ExRateProvider {
 
         ObjectMapper mapper = new ObjectMapper();
         ExRateData data = mapper.readValue(response, ExRateData.class);
+
+        System.out.println("API ExRate : " + data.rates().get("KRW"));
+
         return data.rates().get("KRW");
     }
 }
