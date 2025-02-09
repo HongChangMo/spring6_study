@@ -7,5 +7,5 @@ import java.math.BigDecimal;
 * 추상화를 위한 interface
 * */
 public interface ExRateProvider {
-    BigDecimal getExRate(String currency) throws IOException;
+    BigDecimal getExRate(String currency);
 }
