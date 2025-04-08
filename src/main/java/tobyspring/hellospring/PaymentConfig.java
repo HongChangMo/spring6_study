@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.JdkClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 import tobyspring.hellospring.exrate.RestTemplateExRateProvider;
+import tobyspring.hellospring.order.OrderService;
 import tobyspring.hellospring.payment.ExRateProvider;
 import tobyspring.hellospring.payment.PaymentService;
 
@@ -23,10 +24,10 @@ public class PaymentConfig {
         return new PaymentService(exRateProvider(), clock());
     }
 
-    @Bean
+   /* @Bean
     public OrderService orderService() {
         return new OrderService(exRateProvider());
-    }
+    }*/
     @Bean
     public ExRateProvider exRateProvider() {
         return new RestTemplateExRateProvider(restTemplate());
@@ -42,11 +43,11 @@ public class PaymentConfig {
         return new CachedExRateProvider( exRateProvider() );
     }*/
 }
-
+/*
 class OrderService {
     ExRateProvider exRateProvider;
 
     public OrderService(ExRateProvider exRateProvider) {
         this.exRateProvider = exRateProvider;
     }
-}
+}*/
